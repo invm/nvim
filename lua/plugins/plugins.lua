@@ -29,6 +29,7 @@ return {
         "typos",
         "flake8",
         "shfmt",
+        "ruff",
       },
     },
   },
@@ -68,5 +69,8 @@ return {
         "yaml",
       },
     },
+  },
+  {
+    "ThePrimeagen/vim-be-good",
   },
 }
