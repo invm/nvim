@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 local keys = {
   n = {
+    { "<leader>qw", "<cmd>:q!<CR>", { desc = "Close window" } },
     { "<leader>js", "<cmd> :set filetype=json<CR>", { desc = "Set filetype to json" } },
     { "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
     { "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
