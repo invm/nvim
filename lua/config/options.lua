@@ -10,6 +10,8 @@ local options = {
   listchars = "eol:⏎,tab:>·,trail:~,extends:>,precedes:<",
   list = true,
   updatetime = 0,
+  foldexpr = "v:lua.vim.treesitter.foldexpr()",
+  foldmethod = "manual",
 }
 
 vim.g.autoformat = false
