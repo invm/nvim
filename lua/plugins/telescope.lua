@@ -14,7 +14,7 @@ return {
             "--smart-case",
             "--hidden",
           },
-          file_ignore_patterns = { "node%_modules/.*" },
+          file_ignore_patterns = { "node%_modules/.*", ".git" },
           prompt_prefix = "   ",
           layout_config = {
             horizontal = {
