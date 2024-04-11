@@ -8,6 +8,7 @@ return {
           ["<space>"] = "open",
         },
       },
+      bind_to_cwd = true,
       filesystem = {
         filtered_items = {
           visible = true,
