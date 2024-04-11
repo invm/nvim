@@ -14,10 +14,10 @@ local options = {
   foldmethod = "manual",
   guicursor = "n-v-c-sm:block,i-ci:ver30-iCursor-blinkwait200-blinkon150-blinkoff150,r-cr-o:hor20",
   conceallevel = 0,
-  root_spec = { "cwd" },
 }
 
 vim.g.autoformat = false
+vim.g.root_spec = { "cwd" }
 
 for k, v in pairs(options) do
   vim.opt[k] = v
