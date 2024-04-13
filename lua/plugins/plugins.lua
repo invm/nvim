@@ -1,13 +1,24 @@
 return {
-  {
-    "folke/noice.nvim",
-    opts = {
-      notify = {
-        enabled = false,
-      },
-    },
-  },
+  { "echasnovski/mini.pairs", enabled = false },
+  { "folke/noice.nvim", opts = { notify = { enabled = false } } },
   { "rcarriga/nvim-notify", enabled = false },
+  { "mg979/vim-visual-multi" },
+  {
+    "L3MON4D3/LuaSnip",
+    keys = function()
+      return {}
+    end,
+  },
+  {
+    "windwp/nvim-autopairs",
+    opts = { fast_wrap = {}, disable_filetype = { "TelescopePrompt", "vim" } },
+    config = function(_, opts)
+      require("nvim-autopairs").setup(opts)
+      -- setup cmp for autopairs
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+  },
   {
     "kdheepak/lazygit.nvim",
     cmd = {
@@ -43,7 +54,7 @@ return {
     },
   },
   {
-    "uloco/bluloco.nvim",
+    "buloco/bluloco.nvim",
     lazy = false,
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
@@ -51,13 +62,7 @@ return {
       -- your optional config goes here, see below.
     end,
   },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "bluloco",
-    },
-  },
-  { import = "lazyvim.plugins.extras.lang.typescript" },
+  { "LazyVim/LazyVim", opts = { colorscheme = "bluloco" } },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -78,13 +83,6 @@ return {
         "yaml",
       },
     },
-  },
-  { "mg979/vim-visual-multi" },
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
   },
   {
     "hrsh7th/nvim-cmp",
