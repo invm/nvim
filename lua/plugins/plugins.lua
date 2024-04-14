@@ -4,10 +4,10 @@ return {
   { "rcarriga/nvim-notify", enabled = false },
   { "mg979/vim-visual-multi" },
   {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
+    "echasnovski/mini.bufremove",
+    keys = {
+      { "<leader>k", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
+    },
   },
   {
     "windwp/nvim-autopairs",
@@ -83,6 +83,12 @@ return {
         "yaml",
       },
     },
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    keys = function()
+      return {}
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
