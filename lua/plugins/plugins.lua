@@ -1,12 +1,21 @@
 return {
   { "echasnovski/mini.pairs", enabled = false },
   { "folke/noice.nvim", opts = { notify = { enabled = false } } },
+  { "folke/neodev.nvim" },
   { "rcarriga/nvim-notify", enabled = false },
+  { "linux-cultist/venv-selector.nvim", enabled = false },
+  { "folke/tokyonight.nvim", enabled = false },
   { "mg979/vim-visual-multi" },
   {
     "echasnovski/mini.bufremove",
     keys = {
-      { "<leader>k", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
+      {
+        "<leader>k",
+        function()
+          require("mini.bufremove").delete(0, true)
+        end,
+        desc = "Delete Buffer (Force)",
+      },
     },
   },
   {
