@@ -18,7 +18,11 @@ local options = {
 
 vim.g.autoformat = false
 vim.g.root_spec = { "cwd" }
+-- turn off lazyvim colorscheme for lazygit
+-- vim.g.lazygit_config = false
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+LazyVim.lazygit.theme.activeBorderColor = { fg = "DiagnosticWarn", bold = true }

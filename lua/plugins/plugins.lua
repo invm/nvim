@@ -4,7 +4,6 @@ return {
   { "folke/neodev.nvim" },
   { "rcarriga/nvim-notify", enabled = false },
   { "linux-cultist/venv-selector.nvim", enabled = false },
-  { "folke/tokyonight.nvim", enabled = false },
   { "mg979/vim-visual-multi" },
   {
     "echasnovski/mini.bufremove",
@@ -82,7 +81,7 @@ return {
       -- your optional config goes here, see below.
     end,
   },
-  { "LazyVim/LazyVim", opts = { colorscheme = "bluloco" } },
+  -- { "LazyVim/LazyVim", opts = { colorscheme = "bluloco" } },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
