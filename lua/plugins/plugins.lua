@@ -5,6 +5,7 @@ return {
   { "rcarriga/nvim-notify", enabled = false },
   { "linux-cultist/venv-selector.nvim", enabled = false },
   { "mg979/vim-visual-multi" },
+  { "nvim-lspconfig", opts = { inlay_hints = { enabled = false } } },
   {
     "echasnovski/mini.bufremove",
     keys = {
@@ -58,6 +59,8 @@ return {
         "pyright",
         "bash-language-server",
         "json-lsp",
+        "gopls",
+        "codelldb",
         "yaml-language-server",
         "grammarly-languageserver",
         "prettier",
@@ -81,7 +84,7 @@ return {
       -- your optional config goes here, see below.
     end,
   },
-  -- { "LazyVim/LazyVim", opts = { colorscheme = "bluloco" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "bluloco" } },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -96,6 +99,8 @@ return {
         "python",
         "query",
         "regex",
+        "go",
+        "rust",
         "tsx",
         "typescript",
         "vim",

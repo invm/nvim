@@ -7,7 +7,7 @@ local keys = {
     { "<leader>pj", "<cmd> :set filetype=json<CR>", { desc = "Set filetype to json" } },
     { "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
     { "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
-    { "<leader>fb", "<cmd> Telescope buffers <CR>", { desc = "Find buffers" } },
+    { "<C-c>", "<ESC>", { desc = "Escape" } },
     {
       "]h",
       function()

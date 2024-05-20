@@ -10,9 +10,7 @@ local options = {
   listchars = "eol:⏎,tab:>·,trail:~,extends:>,precedes:<",
   list = true,
   updatetime = 0,
-  foldexpr = "v:lua.vim.treesitter.foldexpr()",
-  foldmethod = "expr",
-  guicursor = "n-v-c-sm:block,i-ci:ver30-iCursor-blinkwait200-blinkon150-blinkoff150,r-cr-o:hor20",
+  guicursor = "n-v-c-sm:block-blinkon1,i-ci:ver30-iCursor-blinkwait200-blinkon150-blinkoff150,r-cr-o:hor20",
   conceallevel = 0,
 }
 
