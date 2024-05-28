@@ -12,15 +12,33 @@ local options = {
   updatetime = 0,
   guicursor = "n-v-c-sm:block-blinkon1,i-ci:ver30-iCursor-blinkwait200-blinkon150-blinkoff150,r-cr-o:hor20",
   conceallevel = 0,
+  scrolloff = 8,
+  sidescrolloff = 8,
 }
-
-vim.g.autoformat = false
-vim.g.root_spec = { "cwd" }
--- turn off lazyvim colorscheme for lazygit
--- vim.g.lazygit_config = false
 
 for k, v in pairs(options) do
   vim.opt[k] = v
+end
+
+local g_options = {
+  autoformat = false,
+  root_spec = { "cwd" },
+  -- turn off lazyvim colorscheme for lazygit
+  -- lazygit_config = false
+}
+
+for k, v in pairs(g_options) do
+  vim.g[k] = v
+end
+
+local append_options = {
+  shortmess = "c",
+  whichwrap = "<,>,[,],h,l",
+  iskeyword = "-",
+}
+
+for k, v in pairs(append_options) do
+  vim.opt[k]:append(v)
 end
 
 LazyVim.lazygit.theme.activeBorderColor = { fg = "DiagnosticWarn", bold = true }

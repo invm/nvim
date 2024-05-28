@@ -1,10 +1,10 @@
 return {
   { "echasnovski/mini.pairs", enabled = false },
   { "folke/noice.nvim", opts = { notify = { enabled = false } } },
-  { "folke/neodev.nvim" },
   { "rcarriga/nvim-notify", enabled = false },
   { "linux-cultist/venv-selector.nvim", enabled = false },
   { "mg979/vim-visual-multi" },
+  { "theHamsta/nvim-dap-virtual-text", enabled = false },
   { "nvim-lspconfig", opts = { inlay_hints = { enabled = false } } },
   {
     "echasnovski/mini.bufremove",

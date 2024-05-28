@@ -71,12 +71,22 @@ local keys = {
       end,
       { desc = "execute lua on current buffer" },
     },
+    { "<F2>", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>" },
+    { "<F5>", "<Cmd>lua require'dap'.continue()<CR>" },
+    { "<F6>", "<Cmd>lua require'dapui'.eval()<CR>" },
+    { "<F9>", "<Cmd>lua require'dapui'.toggle()<CR>" },
+    { "<F10>", "<Cmd>lua require'dap'.step_over()<CR>" },
+    { "<F11>", "<Cmd>lua require'dap'.step_into()<CR>" },
+    { "<F12>", "<Cmd>lua require'dap'.step_out()<CR>" },
   },
   c = {
     { "<C-h>", "<Left>", { desc = "Left" } },
     { "<C-j>", "<Down>", { desc = "Down" } },
     { "<C-l>", "<Right>", { desc = "Right" } },
     { "<C-k>", "<Up>", { desc = "Up" } },
+  },
+  v = {
+    { "p", '"_dP', { silent = true } },
   },
 }
 
