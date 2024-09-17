@@ -14,6 +14,7 @@ local options = {
   conceallevel = 0,
   scrolloff = 8,
   sidescrolloff = 8,
+  wrap = true,
 }
 
 for k, v in pairs(options) do
@@ -23,6 +24,8 @@ end
 local g_options = {
   autoformat = false,
   root_spec = { "cwd" },
+  loaded_perl_provider = 0,
+  loaded_ruby_provider = 0,
   -- turn off lazyvim colorscheme for lazygit
   -- lazygit_config = false
 }

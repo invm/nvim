@@ -8,6 +8,8 @@ local keys = {
     { "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
     { "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
     { "<C-c>", "<ESC>", { desc = "Escape" } },
+    { "<C-e>", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
+    { "<C-f>", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
     {
       "]h",
       function()

@@ -14,7 +14,7 @@ return {
             "--smart-case",
             "--hidden",
           },
-          file_ignore_patterns = { "node%_modules/.*", ".git" },
+          file_ignore_patterns = { "node%_modules/.*", ".next", ".git/.*", "package-lock.json", "pnpm-lock.yaml" },
           prompt_prefix = "   ",
           layout_config = {
             horizontal = {
