@@ -40,7 +40,11 @@ return {
     ---@class PluginLspOpts
     opts = {
       signature = { enabled = true },
-      keymap = { preset = "super-tab" },
+      keymap = {
+        preset = "super-tab",
+        ["<CR>"] = { "accept", "fallback" },
+      },
+      completion = { list = { selection = "auto_insert" } },
       sources = {
         default = { "codecompanion" },
         providers = {
