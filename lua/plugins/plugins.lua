@@ -1,5 +1,30 @@
 return {
-  { "echasnovski/mini.pairs", enabled = false },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      lazygit = {
+        theme = {
+          activeBorderColor = { fg = "DiagnosticWarn", bold = true },
+          [241] = { fg = "Special" },
+          cherryPickedCommitBgColor = { fg = "Identifier" },
+          cherryPickedCommitFgColor = { fg = "Function" },
+          defaultFgColor = { fg = "Normal" },
+          inactiveBorderColor = { fg = "FloatBorder" },
+          optionsTextColor = { fg = "Function" },
+          searchingActiveBorderColor = { fg = "MatchParen", bold = true },
+          selectedLineBgColor = { bg = "Visual" }, -- set to `default` to have no background colour
+          unstagedChangesColor = { fg = "DiagnosticError" },
+        },
+      },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    ---@class PluginLspOpts
+    opts = { signature = { enabled = true }, keymap = { preset = "super-tab" } },
+  },
+  -- { "echasnovski/mini.pairs", enabled = false },
+  { "folke/which-key.nvim", opts = { preset = "modern" } },
   { "folke/noice.nvim", opts = { notify = { enabled = false } } },
   { "rcarriga/nvim-notify", enabled = false },
   { "linux-cultist/venv-selector.nvim", enabled = false },
@@ -41,26 +66,6 @@ return {
         end,
         desc = "Delete Buffer",
       },
-    },
-  },
-  {
-    "windwp/nvim-autopairs",
-    opts = { fast_wrap = {}, disable_filetype = { "TelescopePrompt", "vim" } },
-    config = function(_, opts)
-      require("nvim-autopairs").setup(opts)
-      -- setup cmp for autopairs
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-    end,
-  },
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
     },
   },
   {
@@ -121,45 +126,5 @@ return {
         "yaml",
       },
     },
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
-
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-          if cmp.visible() then
-            local entry = cmp.get_selected_entry()
-            if not entry then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-              cmp.confirm()
-            end
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i" }),
-      })
-    end,
   },
 }
