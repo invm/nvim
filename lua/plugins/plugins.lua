@@ -1,5 +1,21 @@
 return {
   {
+    "olimorris/codecompanion.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+    config = true,
+    ops = {
+      adapters = {
+        openai = function()
+          return require("codecompanion.adapters").extend("openai", {
+            env = {
+              api_key = "",
+            },
+          })
+        end,
+      },
+    },
+  },
+  {
     "folke/snacks.nvim",
     opts = {
       lazygit = {
@@ -18,10 +34,24 @@ return {
       },
     },
   },
+  { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
   {
     "saghen/blink.cmp",
     ---@class PluginLspOpts
-    opts = { signature = { enabled = true }, keymap = { preset = "super-tab" } },
+    opts = {
+      signature = { enabled = true },
+      keymap = { preset = "super-tab" },
+      sources = {
+        default = { "codecompanion" },
+        providers = {
+          codecompanion = {
+            name = "CodeCompanion",
+            module = "codecompanion.providers.completion.blink",
+            enabled = true,
+          },
+        },
+      },
+    },
   },
   -- { "echasnovski/mini.pairs", enabled = false },
   { "folke/which-key.nvim", opts = { preset = "modern" } },

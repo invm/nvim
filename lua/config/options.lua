@@ -27,7 +27,7 @@ local g_options = {
   loaded_perl_provider = 0,
   loaded_ruby_provider = 0,
   -- turn off lazyvim colorscheme for lazygit
-  lazygit_config = false,
+  -- lazygit_config = false,
   snacks_animate = false,
 }
 

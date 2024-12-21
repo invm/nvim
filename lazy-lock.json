@@ -7,6 +7,7 @@
   "bluloco.nvim": { "branch": "main", "commit": "e3ce113d8bdc9372abcda1d317fbab41809e6a53" },
   "bufferline.nvim": { "branch": "main", "commit": "261a72b90d6db4ed8014f7bda976bcdc9dd7ce76" },
   "catppuccin": { "branch": "main", "commit": "faf15ab0201b564b6368ffa47b56feefc92ce3f4" },
+  "codecompanion.nvim": { "branch": "main", "commit": "4d61b3fb58e98c0a68713608c789f6b32e69c729" },
   "conform.nvim": { "branch": "master", "commit": "62055b40c4d0b001c87559c7adf96a4a464bcdd5" },
   "copilot.lua": { "branch": "master", "commit": "d3783b9283a7c35940ed8d71549030d5f5f9f980" },
   "crates.nvim": { "branch": "main", "commit": "8bf8358ee326d5d8c11dcd7ac0bcc9ff97dbc785" },
