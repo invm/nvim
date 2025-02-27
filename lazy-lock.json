@@ -10,6 +10,7 @@
   "codecompanion.nvim": { "branch": "main", "commit": "4d61b3fb58e98c0a68713608c789f6b32e69c729" },
   "conform.nvim": { "branch": "master", "commit": "62055b40c4d0b001c87559c7adf96a4a464bcdd5" },
   "copilot.lua": { "branch": "master", "commit": "d3783b9283a7c35940ed8d71549030d5f5f9f980" },
+  "copilot.vim": { "branch": "release", "commit": "cd7f01009fb7b30e22840cadc4faad88b05c6eef" },
   "crates.nvim": { "branch": "main", "commit": "8bf8358ee326d5d8c11dcd7ac0bcc9ff97dbc785" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },

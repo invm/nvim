@@ -44,3 +44,6 @@ local append_options = {
 for k, v in pairs(append_options) do
   vim.opt[k]:append(v)
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true

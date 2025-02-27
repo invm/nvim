@@ -3,21 +3,44 @@ return {
     "olimorris/codecompanion.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
     config = true,
-    ops = {
-      strategies = { chat = { adapter = "anthropic" }, inline = { adapter = "anthropic" } },
-      adapters = {
-        openai = function()
-          return require("codecompanion.adapters").extend("openai", {
-            env = { api_key = "" },
-          })
-        end,
-        adapters = {
-          anthropic = function()
-            return require("codecompanion.adapters").extend("anthropic", {
-              env = { api_key = "" },
-            })
-          end,
+  },
+  {
+    {
+      "CopilotC-Nvim/CopilotChat.nvim",
+      dependencies = {
+        { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+        { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+      },
+      build = "make tiktoken", -- Only on MacOS or Linux
+      opts = {
+        prompts = {
+          Rename = {
+            prompt = "Please rename the variable currently in given selection based on context",
+            selection = function(source)
+              local select = require("CopilotChat.select")
+              return select.visual(source)
+            end,
+          },
+          Rephrase = {
+            prompt = "Please rephrase the selected text based on context",
+            selection = function(source)
+              local select = require("CopilotChat.select")
+              return select.visual(source)
+            end,
+          },
         },
+      },
+      keys = {
+        { "<leader>zc", ":CopilotChat<CR>", mode = "n", desc = "Chat with Copilot" },
+        { "<leader>zc", ":CopilotChat<CR>", mode = "v", desc = "Chat with Copilot" },
+        { "<leader>ze", ":CopilotChatExplain<CR>", mode = "v", desc = "Explain Code" },
+        { "<leader>zr", ":CopilotChatReview<CR>", mode = "v", desc = "Explain Code" },
+        { "<leader>zf", ":CopilotChatFix<CR>", mode = "v", desc = "Fix Code Issues" },
+        { "<leader>zo", ":CopilotChatOptimize<CR>", mode = "v", desc = "Optimize Code" },
+        { "<leader>zd", ":CopilotChatDocs<CR>", mode = "v", desc = "Generate Docs" },
+        { "<leader>zt", ":CopilotChatTests<CR>", mode = "v", desc = "Generate Tests" },
+        { "<leader>zm", ":CopilotChatCommit<CR>", mode = "n", desc = "Generate Commit Message" },
+        { "<leader>zs", ":CopilotChatCommit<CR>", mode = "v", desc = "Generate Commit For Selection" },
       },
     },
   },
@@ -78,6 +101,17 @@ return {
       opts.server.settings = opts.server.settings or {}
       opts.server.settings["rust-analyzer"] = opts.server.settings["rust-analyzer"] or {}
       opts.server.settings["rust-analyzer"].procMacro = { enable = true }
+      opts.server.settings["rust-analyzer"].files = {
+        excludeDirs = {
+          ".git",
+          "node_modules",
+          "target",
+          "dist",
+          "out",
+          ".next",
+          "apps",
+        },
+      }
       -- opts.server.settings["rust-analyzer"].diagnostics = {
       --   enable = true,
       --   disabled = { "unresolved-proc-macro", "unresolved-macro-call" },
