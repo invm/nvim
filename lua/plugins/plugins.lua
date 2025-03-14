@@ -64,6 +64,28 @@ return {
     },
   },
   { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
+  {
+    "saghen/blink.cmp",
+    ---@class PluginLspOpts
+    opts = {
+      signature = { enabled = true },
+      keymap = {
+        preset = "super-tab",
+        ["<CR>"] = { "accept", "fallback" },
+      },
+      completion = { list = { selection = { auto_insert = true } } },
+      sources = {
+        default = { "codecompanion" },
+        providers = {
+          codecompanion = {
+            name = "CodeCompanion",
+            module = "codecompanion.providers.completion.blink",
+            enabled = true,
+          },
+        },
+      },
+    },
+  },
   -- { "echasnovski/mini.pairs", enabled = false },
   { "folke/which-key.nvim", opts = { preset = "modern" } },
   { "folke/noice.nvim", opts = { notify = { enabled = false } } },
@@ -71,6 +93,7 @@ return {
   { "linux-cultist/venv-selector.nvim", enabled = false },
   { "mg979/vim-visual-multi" },
   { "theHamsta/nvim-dap-virtual-text", enabled = false },
+  { "nvim-lspconfig", opts = { inlay_hints = { enabled = false } } },
   {
     "mrcjkb/rustaceanvim",
     opts = function(_, opts)
