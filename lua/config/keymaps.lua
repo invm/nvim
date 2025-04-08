@@ -5,68 +5,14 @@ local keys = {
   n = {
     { "<leader>j", "<cmd>:q!<CR>", { desc = "Close window" } },
     { "<leader>pj", "<cmd> :set filetype=json<CR>", { desc = "Set filetype to json" } },
-    { "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
-    { "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
+    { "<leader>pt", "<cmd> :set filetype=terraform<CR>", { desc = "Set filetype to terraform" } },
     { "<C-c>", "<ESC>", { desc = "Escape" } },
     { "<C-e>", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
     { "<C-f>", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
     {
-      "]h",
-      function()
-        if vim.wo.diff then
-          return "]c"
-        end
-        vim.schedule(function()
-          require("gitsigns").nav_hunk('next')
-        end)
-        return "<Ignore>"
-      end,
-      { desc = "Jump to next hunk" },
-    },
-
-    {
-      "[h",
-      function()
-        if vim.wo.diff then
-          return "[c"
-        end
-        vim.schedule(function()
-          require("gitsigns").nav_hunk('prev')
-        end)
-        return "<Ignore>"
-      end,
-      { desc = "Jump to prev hunk" },
-    },
-
-    -- Actions
-    {
-      "<leader>rh",
-      function()
-        require("gitsigns").reset_hunk()
-      end,
-      { desc = "Reset hunk" },
-    },
-
-    {
-      "<leader>ph",
-      function()
-        require("gitsigns").preview_hunk()
-      end,
-      { desc = "Preview hunk" },
-    },
-
-    {
-      "<leader>gb",
-      function()
-        package.loaded.gitsigns.blame_line()
-      end,
-      { desc = "Blame line" },
-    },
-    {
       "<leader>cx",
       function()
         local file = vim.fn.expand("%:p")
-        print("Current file: " .. file)
         vim.cmd("vsplit | terminal ")
         local command = ':call jobsend(b:terminal_job_id, "lua ' .. file .. '\\n")'
         vim.cmd(command)
@@ -80,6 +26,12 @@ local keys = {
     { "<F10>", "<Cmd>lua require'dap'.step_over()<CR>" },
     { "<F11>", "<Cmd>lua require'dap'.step_into()<CR>" },
     { "<F12>", "<Cmd>lua require'dap'.step_out()<CR>" },
+  },
+  i = {
+    { "<C-h>", "<Left>", { desc = "Left" } },
+    { "<C-j>", "<Down>", { desc = "Down" } },
+    { "<C-l>", "<Right>", { desc = "Right" } },
+    { "<C-k>", "<Up>", { desc = "Up" } },
   },
   c = {
     { "<C-h>", "<Left>", { desc = "Left" } },

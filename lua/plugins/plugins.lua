@@ -1,10 +1,5 @@
 return {
   {
-    "olimorris/codecompanion.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
-    config = true,
-  },
-  {
     {
       "CopilotC-Nvim/CopilotChat.nvim",
       dependencies = {
@@ -63,7 +58,6 @@ return {
       },
     },
   },
-  { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
   {
     "saghen/blink.cmp",
     ---@class PluginLspOpts
@@ -74,16 +68,6 @@ return {
         ["<CR>"] = { "accept", "fallback" },
       },
       completion = { list = { selection = { auto_insert = true } } },
-      sources = {
-        default = { "codecompanion" },
-        providers = {
-          codecompanion = {
-            name = "CodeCompanion",
-            module = "codecompanion.providers.completion.blink",
-            enabled = true,
-          },
-        },
-      },
     },
   },
   -- { "echasnovski/mini.pairs", enabled = false },
