@@ -10,6 +10,40 @@ local keys = {
     { "<C-e>", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
     { "<C-f>", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
     {
+      "<leader>cb",
+      function()
+        local file = vim.fn.expand("%:p")
+        vim.cmd("vsplit | terminal ")
+        local command = ':call jobsend(b:terminal_job_id, "bash ' .. file .. '\\n")'
+        vim.cmd(command)
+      end,
+      { desc = "execute lua on current buffer" },
+    },
+    -- Actions
+    {
+      "<leader>rh",
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      { desc = "Reset hunk" },
+    },
+
+    {
+      "<leader>ph",
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      { desc = "Preview hunk" },
+    },
+
+    {
+      "<leader>gb",
+      function()
+        package.loaded.gitsigns.blame_line()
+      end,
+      { desc = "Blame line" },
+    },
+    {
       "<leader>cx",
       function()
         local file = vim.fn.expand("%:p")

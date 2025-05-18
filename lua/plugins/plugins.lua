@@ -1,44 +1,96 @@
 return {
-  {
-    {
-      "CopilotC-Nvim/CopilotChat.nvim",
-      dependencies = {
-        { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-        { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-      },
-      build = "make tiktoken", -- Only on MacOS or Linux
-      opts = {
-        prompts = {
-          Rename = {
-            prompt = "Please rename the variable currently in given selection based on context",
-            selection = function(source)
-              local select = require("CopilotChat.select")
-              return select.visual(source)
-            end,
-          },
-          Rephrase = {
-            prompt = "Please rephrase the selected text based on context",
-            selection = function(source)
-              local select = require("CopilotChat.select")
-              return select.visual(source)
-            end,
-          },
-        },
-      },
-      keys = {
-        { "<leader>zc", ":CopilotChat<CR>", mode = "n", desc = "Chat with Copilot" },
-        { "<leader>zc", ":CopilotChat<CR>", mode = "v", desc = "Chat with Copilot" },
-        { "<leader>ze", ":CopilotChatExplain<CR>", mode = "v", desc = "Explain Code" },
-        { "<leader>zr", ":CopilotChatReview<CR>", mode = "v", desc = "Explain Code" },
-        { "<leader>zf", ":CopilotChatFix<CR>", mode = "v", desc = "Fix Code Issues" },
-        { "<leader>zo", ":CopilotChatOptimize<CR>", mode = "v", desc = "Optimize Code" },
-        { "<leader>zd", ":CopilotChatDocs<CR>", mode = "v", desc = "Generate Docs" },
-        { "<leader>zt", ":CopilotChatTests<CR>", mode = "v", desc = "Generate Tests" },
-        { "<leader>zm", ":CopilotChatCommit<CR>", mode = "n", desc = "Generate Commit Message" },
-        { "<leader>zs", ":CopilotChatCommit<CR>", mode = "v", desc = "Generate Commit For Selection" },
-      },
-    },
-  },
+  { "m4xshen/hardtime.nvim", lazy = false, dependencies = { "MunifTanjim/nui.nvim" }, opts = {} },
+  -- {
+  --   "yetone/avante.nvim",
+  --   event = "VeryLazy",
+  --   version = false,
+  --   opts = {
+  --     provider = "copilot",
+  --     copilot = {
+  --       model = "claude-3.7-sonnet",
+  --       timeout = 30000,
+  --     },
+  --     hints = {
+  --       enabled = false
+  --     },
+  --   },
+  --   build = "make",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "stevearc/dressing.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --     "echasnovski/mini.pick",
+  --     "nvim-telescope/telescope.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --     "ibhagwan/fzf-lua",
+  --     "nvim-tree/nvim-web-devicons",
+  --     "zbirenbaum/copilot.lua",
+  --     {
+  --       -- support for image pasting
+  --       "HakonHarnes/img-clip.nvim",
+  --       event = "VeryLazy",
+  --       opts = {
+  --         -- recommended settings
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = {
+  --             insert_mode = true,
+  --           },
+  --         },
+  --       },
+  --     },
+  --     {
+  --       -- Make sure to set this up properly if you have lazy=true
+  --       "MeanderingProgrammer/render-markdown.nvim",
+  --       opts = {
+  --         file_types = { "markdown", "Avante" },
+  --       },
+  --       ft = { "markdown", "Avante" },
+  --     },
+  --   },
+  -- },
+  -- {
+  --   {
+  --     "CopilotC-Nvim/CopilotChat.nvim",
+  --     dependencies = {
+  --       { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+  --       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+  --     },
+  --     build = "make tiktoken", -- Only on MacOS or Linux
+  --     opts = {
+  --       prompts = {
+  --         Rename = {
+  --           prompt = "Please rename the variable currently in given selection based on context",
+  --           selection = function(source)
+  --             local select = require("CopilotChat.select")
+  --             return select.visual(source)
+  --           end,
+  --         },
+  --         Rephrase = {
+  --           prompt = "Please rephrase the selected text based on context",
+  --           selection = function(source)
+  --             local select = require("CopilotChat.select")
+  --             return select.visual(source)
+  --           end,
+  --         },
+  --       },
+  --     },
+  --     keys = {
+  --       { "<leader>zc", ":CopilotChat<CR>", mode = "n", desc = "Chat with Copilot" },
+  --       { "<leader>zc", ":CopilotChat<CR>", mode = "v", desc = "Chat with Copilot" },
+  --       { "<leader>ze", ":CopilotChatExplain<CR>", mode = "v", desc = "Explain Code" },
+  --       { "<leader>zr", ":CopilotChatReview<CR>", mode = "v", desc = "Explain Code" },
+  --       { "<leader>zf", ":CopilotChatFix<CR>", mode = "v", desc = "Fix Code Issues" },
+  --       { "<leader>zo", ":CopilotChatOptimize<CR>", mode = "v", desc = "Optimize Code" },
+  --       { "<leader>zd", ":CopilotChatDocs<CR>", mode = "v", desc = "Generate Docs" },
+  --       { "<leader>zt", ":CopilotChatTests<CR>", mode = "v", desc = "Generate Tests" },
+  --       { "<leader>zm", ":CopilotChatCommit<CR>", mode = "n", desc = "Generate Commit Message" },
+  --       { "<leader>zs", ":CopilotChatCommit<CR>", mode = "v", desc = "Generate Commit For Selection" },
+  --     },
+  --   },
+  -- },
   {
     "folke/snacks.nvim",
     opts = {
@@ -185,4 +237,6 @@ return {
       },
     },
   },
+  { "mason-org/mason.nvim", version = "^1.0.0" },
+  { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
 }
