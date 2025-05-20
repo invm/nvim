@@ -1,5 +1,4 @@
 return {
-  { "m4xshen/hardtime.nvim", lazy = false, dependencies = { "MunifTanjim/nui.nvim" }, opts = {} },
   -- {
   --   "yetone/avante.nvim",
   --   event = "VeryLazy",
