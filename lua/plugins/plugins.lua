@@ -1,95 +1,4 @@
 return {
-  -- {
-  --   "yetone/avante.nvim",
-  --   event = "VeryLazy",
-  --   version = false,
-  --   opts = {
-  --     provider = "copilot",
-  --     copilot = {
-  --       model = "claude-3.7-sonnet",
-  --       timeout = 30000,
-  --     },
-  --     hints = {
-  --       enabled = false
-  --     },
-  --   },
-  --   build = "make",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "stevearc/dressing.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --     "echasnovski/mini.pick",
-  --     "nvim-telescope/telescope.nvim",
-  --     "hrsh7th/nvim-cmp",
-  --     "ibhagwan/fzf-lua",
-  --     "nvim-tree/nvim-web-devicons",
-  --     "zbirenbaum/copilot.lua",
-  --     {
-  --       -- support for image pasting
-  --       "HakonHarnes/img-clip.nvim",
-  --       event = "VeryLazy",
-  --       opts = {
-  --         -- recommended settings
-  --         default = {
-  --           embed_image_as_base64 = false,
-  --           prompt_for_file_name = false,
-  --           drag_and_drop = {
-  --             insert_mode = true,
-  --           },
-  --         },
-  --       },
-  --     },
-  --     {
-  --       -- Make sure to set this up properly if you have lazy=true
-  --       "MeanderingProgrammer/render-markdown.nvim",
-  --       opts = {
-  --         file_types = { "markdown", "Avante" },
-  --       },
-  --       ft = { "markdown", "Avante" },
-  --     },
-  --   },
-  -- },
-  -- {
-  --   {
-  --     "CopilotC-Nvim/CopilotChat.nvim",
-  --     dependencies = {
-  --       { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-  --       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-  --     },
-  --     build = "make tiktoken", -- Only on MacOS or Linux
-  --     opts = {
-  --       prompts = {
-  --         Rename = {
-  --           prompt = "Please rename the variable currently in given selection based on context",
-  --           selection = function(source)
-  --             local select = require("CopilotChat.select")
-  --             return select.visual(source)
-  --           end,
-  --         },
-  --         Rephrase = {
-  --           prompt = "Please rephrase the selected text based on context",
-  --           selection = function(source)
-  --             local select = require("CopilotChat.select")
-  --             return select.visual(source)
-  --           end,
-  --         },
-  --       },
-  --     },
-  --     keys = {
-  --       { "<leader>zc", ":CopilotChat<CR>", mode = "n", desc = "Chat with Copilot" },
-  --       { "<leader>zc", ":CopilotChat<CR>", mode = "v", desc = "Chat with Copilot" },
-  --       { "<leader>ze", ":CopilotChatExplain<CR>", mode = "v", desc = "Explain Code" },
-  --       { "<leader>zr", ":CopilotChatReview<CR>", mode = "v", desc = "Explain Code" },
-  --       { "<leader>zf", ":CopilotChatFix<CR>", mode = "v", desc = "Fix Code Issues" },
-  --       { "<leader>zo", ":CopilotChatOptimize<CR>", mode = "v", desc = "Optimize Code" },
-  --       { "<leader>zd", ":CopilotChatDocs<CR>", mode = "v", desc = "Generate Docs" },
-  --       { "<leader>zt", ":CopilotChatTests<CR>", mode = "v", desc = "Generate Tests" },
-  --       { "<leader>zm", ":CopilotChatCommit<CR>", mode = "n", desc = "Generate Commit Message" },
-  --       { "<leader>zs", ":CopilotChatCommit<CR>", mode = "v", desc = "Generate Commit For Selection" },
-  --     },
-  --   },
-  -- },
   {
     "folke/snacks.nvim",
     opts = {
@@ -108,6 +17,15 @@ return {
         },
       },
     },
+    keys = {
+      {
+        "<leader>k",
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = "Delete Buffer",
+      },
+    },
   },
   {
     "saghen/blink.cmp",
@@ -121,7 +39,6 @@ return {
       completion = { list = { selection = { auto_insert = true } } },
     },
   },
-  -- { "echasnovski/mini.pairs", enabled = false },
   { "folke/which-key.nvim", opts = { preset = "modern" } },
   { "folke/noice.nvim", opts = { notify = { enabled = false } } },
   { "rcarriga/nvim-notify", enabled = false },
@@ -147,95 +64,19 @@ return {
           "apps",
         },
       }
-      -- opts.server.settings["rust-analyzer"].diagnostics = {
-      --   enable = true,
-      --   disabled = { "unresolved-proc-macro", "unresolved-macro-call" },
-      --   enableExperimental = true,
-      -- }
     end,
   },
   {
-    "echasnovski/mini.bufremove",
-    keys = {
-      {
-        "<leader>k",
-        function()
-          local bd = require("mini.bufremove").delete
-          if vim.bo.modified then
-            local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
-            if choice == 1 then -- Yes
-              vim.cmd.write()
-              bd(0)
-            elseif choice == 2 then -- No
-              bd(0, true)
-            end
-          else
-            bd(0)
-          end
-        end,
-        desc = "Delete Buffer",
-      },
-    },
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "rust-analyzer",
-        "typescript-language-server",
-        "pyright",
-        "bash-language-server",
-        "json-lsp",
-        "gopls",
-        "codelldb",
-        "yaml-language-server",
-        "grammarly-languageserver",
-        "prettier",
-        "stylua",
-        "black",
-        "shellcheck",
-        "eslint_d",
-        "typos",
-        "flake8",
-        "shfmt",
-        "ruff",
-      },
-    },
+    "mason-org/mason.nvim",
+    opts = { ensure_installed = { "grammarly-languageserver" } },
   },
   {
     "uloco/bluloco.nvim",
     lazy = false,
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
-    config = function()
-      -- your optional config goes here, see below.
-    end,
   },
   { "LazyVim/LazyVim", opts = { colorscheme = "bluloco" } },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "go",
-        "rust",
-        "tsx",
-        "typescript",
-        "vim",
-        "yaml",
-      },
-    },
-  },
-  { "mason-org/mason.nvim", version = "^1.0.0" },
-  { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
+  { "coder/claudecode.nvim", opts = { terminal = { split_width_percentage = 0.4 } } },
+  { "MeanderingProgrammer/render-markdown.nvim", enabled = false },
 }

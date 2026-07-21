@@ -7,8 +7,8 @@ local keys = {
     { "<leader>pj", "<cmd> :set filetype=json<CR>", { desc = "Set filetype to json" } },
     { "<leader>pt", "<cmd> :set filetype=terraform<CR>", { desc = "Set filetype to terraform" } },
     { "<C-c>", "<ESC>", { desc = "Escape" } },
-    { "<C-e>", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
-    { "<C-f>", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
+    { "<C-e>", LazyVim.pick("files"), { desc = "Find files" } },
+    { "<C-f>", LazyVim.pick("live_grep"), { desc = "Live grep" } },
     {
       "<leader>cb",
       function()
@@ -17,31 +17,7 @@ local keys = {
         local command = ':call jobsend(b:terminal_job_id, "bash ' .. file .. '\\n")'
         vim.cmd(command)
       end,
-      { desc = "execute lua on current buffer" },
-    },
-    -- Actions
-    {
-      "<leader>rh",
-      function()
-        require("gitsigns").reset_hunk()
-      end,
-      { desc = "Reset hunk" },
-    },
-
-    {
-      "<leader>ph",
-      function()
-        require("gitsigns").preview_hunk()
-      end,
-      { desc = "Preview hunk" },
-    },
-
-    {
-      "<leader>gb",
-      function()
-        package.loaded.gitsigns.blame_line()
-      end,
-      { desc = "Blame line" },
+      { desc = "execute bash on current buffer" },
     },
     {
       "<leader>cx",
