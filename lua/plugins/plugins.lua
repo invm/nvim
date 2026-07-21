@@ -45,7 +45,7 @@ return {
   { "linux-cultist/venv-selector.nvim", enabled = false },
   { "mg979/vim-visual-multi" },
   { "theHamsta/nvim-dap-virtual-text", enabled = false },
-  { "nvim-lspconfig", opts = { inlay_hints = { enabled = false } } },
+  { "nvim-lspconfig", opts = { inlay_hints = { enabled = false }, servers = { harper_ls = {} } } },
   {
     "mrcjkb/rustaceanvim",
     opts = function(_, opts)
@@ -65,10 +65,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "mason-org/mason.nvim",
-    opts = { ensure_installed = { "grammarly-languageserver" } },
   },
   {
     "uloco/bluloco.nvim",
