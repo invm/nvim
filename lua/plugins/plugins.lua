@@ -2,6 +2,23 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      picker = {
+        win = {
+          input = {
+            keys = {
+              ["<c-k>"] = { "history_back", mode = { "i", "n" } },
+              ["<c-j>"] = { "history_forward", mode = { "i", "n" } },
+            },
+          },
+        },
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = false,
+            exclude = { ".git", ".DS_Store", "node_modules" },
+          },
+        },
+      },
       lazygit = {
         theme = {
           activeBorderColor = { fg = "DiagnosticWarn", bold = true },
@@ -41,7 +58,6 @@ return {
   },
   { "folke/which-key.nvim", opts = { preset = "modern" } },
   { "folke/noice.nvim", opts = { notify = { enabled = false } } },
-  { "rcarriga/nvim-notify", enabled = false },
   { "linux-cultist/venv-selector.nvim", enabled = false },
   { "mg979/vim-visual-multi" },
   { "theHamsta/nvim-dap-virtual-text", enabled = false },
