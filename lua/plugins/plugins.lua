@@ -26,6 +26,7 @@ return {
     "folke/snacks.nvim",
     opts = {
       picker = {
+        hidden = true,
         win = {
           input = {
             keys = {
@@ -35,8 +36,8 @@ return {
           },
         },
         sources = {
+          files = { hidden = true },
           explorer = {
-            hidden = true,
             ignored = false,
             exclude = { ".git", ".DS_Store", "node_modules" },
             -- the explorer is a float, so tmux-navigator's `wincmd h` always
