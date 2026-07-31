@@ -1,3 +1,26 @@
+-- The explorer is a float, so `winnr("h"|"j"|"k"|"l")` all return the same
+-- window and tmux-navigator can never tell it hit an edge. Do it by hand.
+-- ponytail: <c-l> assumes the editor is right of the explorer, which is the
+-- only layout here; make it geometry-aware if that ever stops being true.
+local function nav(dir)
+  return function()
+    if dir == "l" then
+      return vim.cmd.wincmd("p") -- back to the editor window
+    end
+    if vim.env.TMUX then
+      local pane = ({ h = "-L", j = "-D", k = "-U" })[dir]
+      vim.system({ "tmux", "select-pane", "-t", vim.env.TMUX_PANE, pane })
+    else
+      vim.cmd.wincmd(dir)
+    end
+  end
+end
+
+local nav_keys = {}
+for _, dir in ipairs({ "h", "j", "k", "l" }) do
+  nav_keys["<c-" .. dir .. ">"] = { nav(dir), mode = { "i", "n" }, desc = "Navigate " .. dir }
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -16,6 +39,9 @@ return {
             hidden = true,
             ignored = false,
             exclude = { ".git", ".DS_Store", "node_modules" },
+            -- the explorer is a float, so tmux-navigator's `wincmd h` always
+            -- "succeeds" and it never forwards the key to tmux. Go direct.
+            win = { list = { keys = nav_keys }, input = { keys = nav_keys } },
           },
         },
       },
