@@ -42,7 +42,11 @@ return {
             exclude = { ".git", ".DS_Store", "node_modules" },
             -- the explorer is a float, so tmux-navigator's `wincmd h` always
             -- "succeeds" and it never forwards the key to tmux. Go direct.
-            win = { list = { keys = nav_keys }, input = { keys = nav_keys } },
+            -- default `o` is explorer_open (xdg-open/`open`); want it in a buffer
+            win = {
+              list = { keys = vim.tbl_extend("error", { ["o"] = "confirm" }, nav_keys) },
+              input = { keys = vim.tbl_extend("error", { ["o"] = "confirm" }, nav_keys) },
+            },
           },
         },
       },
