@@ -19,3 +19,18 @@ vim.schedule(function()
     return p
   end
 end)
+
+-- bluloco gives NormalFloat & co blend=5, so floats draw the text behind them
+-- in a near-background colour. Rex's minimum contrast makes that text readable.
+if vim.env.TERM_PROGRAM == "rex" then
+  local function unblend()
+    for name, hl in pairs(vim.api.nvim_get_hl(0, {})) do
+      if hl.blend and not hl.link then
+        hl.blend = nil
+        vim.api.nvim_set_hl(0, name, hl)
+      end
+    end
+  end
+  unblend()
+  vim.api.nvim_create_autocmd("ColorScheme", { callback = unblend })
+end
