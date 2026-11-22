@@ -10,6 +10,9 @@ local function nav(dir)
     if vim.env.TMUX then
       local pane = ({ h = "-L", j = "-D", k = "-U" })[dir]
       vim.system({ "tmux", "select-pane", "-t", vim.env.TMUX_PANE, pane })
+    elseif vim.env.REX_SESSION then
+      local direction = ({ h = "left", j = "down", k = "up" })[dir]
+      vim.system({ "rex", "do", "vim_rex_focus", "direction=" .. direction })
     else
       vim.cmd.wincmd(dir)
     end
